@@ -1,3 +1,21 @@
+@font-face {
+  font-family: "F37Drago";
+  src: url("fonts/F37Drago-Regular.woff2") format("woff2"),
+       url("fonts/F37Drago-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "F37Drago";
+  src: url("fonts/F37Drago-Light.woff2") format("woff2"),
+       url("fonts/F37Drago-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --navy: #181978;
   --gray: #5a5a5a;
@@ -12,7 +30,7 @@
 
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "F37Drago", Arial, Helvetica, sans-serif;
   background: var(--white);
   color: #1a1a1a;
 }
