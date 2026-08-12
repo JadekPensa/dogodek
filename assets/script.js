@@ -68,7 +68,7 @@ form.addEventListener("submit", async function (event) {
     });
 
     if (response.ok) {
-      form.hidden = true;
+      submitButton.textContent = "Oddano";
       confirmationMessage.hidden = false;
     } else {
       throw new Error("Napaka pri pošiljanju");
