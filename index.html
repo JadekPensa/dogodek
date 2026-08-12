@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prijava na dogodek | Jadek & Pensa</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <img src="assets/img/logo.png" alt="Jadek & Pensa" class="logo">
+  </header>
+
+  <main class="page">
+    <h1>Prijava na dogodek</h1>
+
+    <form id="registration-form" class="registration-form" novalidate>
+      <!-- Honeypot polje - skrito za uporabnike, aktivno za bote -->
+      <div class="honeypot" aria-hidden="true">
+        <label for="website">Website</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="form-group">
+        <label for="ime-priimek">Ime in priimek <span class="required">*</span></label>
+        <input type="text" id="ime-priimek" name="ime-priimek" required autocomplete="name">
+      </div>
+
+      <div class="form-group">
+        <label for="email">E-poštni naslov <span class="required">*</span></label>
+        <input type="email" id="email" name="email" required autocomplete="email">
+      </div>
+
+      <div class="form-group form-group-checkbox">
+        <input type="checkbox" id="soglasje" name="soglasje" required>
+        <label for="soglasje">
+          Strinjam se, da Jadek &amp; Pensa, d.o.o., moje osebne podatke iz tega obrazca obdeluje za namen
+          organizacije in izvedbe dogodka [IME DOGODKA]. Podatki bodo hranjeni [OBDOBJE HRAMBE] in ne bodo
+          posredovani tretjim osebam brez pravne podlage. <span class="required">*</span>
+        </label>
+      </div>
+
+      <div id="form-error" class="form-error" hidden></div>
+
+      <button type="submit" id="submit-button" class="submit-button">Prijava</button>
+    </form>
+
+    <div id="confirmation-message" class="confirmation-message" hidden>
+      <p>Hvala za vašo prijavo! Prejeli smo jo uspešno.</p>
+    </div>
+  </main>
+
+  <script src="assets/script.js"></script>
+</body>
+</html>
