@@ -146,7 +146,8 @@ h1 {
   gap: 0.6rem;
 }
 
-.checkbox-item input[type="checkbox"] {
+.checkbox-item input[type="checkbox"],
+.checkbox-item input[type="radio"] {
   margin-top: 0.2rem;
   flex-shrink: 0;
   width: 1.1rem;

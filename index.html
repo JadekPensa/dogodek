@@ -75,10 +75,19 @@
         </div>
       </fieldset>
 
-      <div class="form-group form-group-checkbox">
-        <input type="checkbox" id="dodatni-gost" name="dodatni-gost">
-        <label for="dodatni-gost">Dogodka se bom udeležil/a z dodatnim gostom</label>
-      </div>
+      <fieldset class="form-group checkbox-fieldset">
+        <legend>Ali se nameravate dogodka udeležiti z dodatnim gostom? <span class="required">*</span></legend>
+        <div class="checkbox-group">
+          <div class="checkbox-item">
+            <input type="radio" id="dodatni-gost-da" name="dodatni-gost" value="Da" required>
+            <label for="dodatni-gost-da">Da</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="radio" id="dodatni-gost-ne" name="dodatni-gost" value="Ne" required>
+            <label for="dodatni-gost-ne">Ne</label>
+          </div>
+        </div>
+      </fieldset>
 
       <fieldset class="guest-fields" id="gost-podatki" hidden>
         <legend>Podatki o gostu</legend>

@@ -8,15 +8,17 @@ const submitButton = document.getElementById("submit-button");
 const formError = document.getElementById("form-error");
 const confirmationMessage = document.getElementById("confirmation-message");
 
-const dodatniGostCheckbox = document.getElementById("dodatni-gost");
+const dodatniGostRadios = document.querySelectorAll('input[name="dodatni-gost"]');
 const gostPodatki = document.getElementById("gost-podatki");
 const prehranaDrugoCheckbox = document.getElementById("prehrana-drugo");
 const prehranaDrugoPolje = document.getElementById("prehrana-drugo-polje");
 const gostPrehranaDrugoCheckbox = document.getElementById("gost-prehrana-drugo");
 const gostPrehranaDrugoPolje = document.getElementById("gost-prehrana-drugo-polje");
 
-dodatniGostCheckbox.addEventListener("change", function () {
-  gostPodatki.hidden = !dodatniGostCheckbox.checked;
+dodatniGostRadios.forEach(function (radio) {
+  radio.addEventListener("change", function () {
+    gostPodatki.hidden = form["dodatni-gost"].value !== "Da";
+  });
 });
 
 prehranaDrugoCheckbox.addEventListener("change", function () {
@@ -62,7 +64,8 @@ form.addEventListener("submit", async function (event) {
   const funkcija = form["funkcija"].value.trim();
   const soglasje = form["soglasje"].checked;
   const honeypot = form["website"].value.trim();
-  const dodatniGost = dodatniGostCheckbox.checked;
+  const dodatniGostOdgovor = form["dodatni-gost"].value;
+  const dodatniGost = dodatniGostOdgovor === "Da";
 
   // Honeypot je izpolnjen - domnevamo bota, prijavo tiho zavrnemo.
   if (honeypot !== "") {
@@ -76,6 +79,11 @@ form.addEventListener("submit", async function (event) {
 
   if (!email || !isValidEmail(email)) {
     showError("Prosimo, vnesite veljaven e-poštni naslov.");
+    return;
+  }
+
+  if (!dodatniGostOdgovor) {
+    showError("Prosimo, izberite, ali se boste dogodka udeležili z dodatnim gostom.");
     return;
   }
 
