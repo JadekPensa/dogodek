@@ -31,6 +31,108 @@
         <input type="email" id="email" name="email" required autocomplete="email">
       </div>
 
+      <div class="form-group">
+        <label for="podjetje">Podjetje</label>
+        <input type="text" id="podjetje" name="podjetje" autocomplete="organization">
+      </div>
+
+      <div class="form-group">
+        <label for="funkcija">Funkcija</label>
+        <input type="text" id="funkcija" name="funkcija" autocomplete="organization-title">
+      </div>
+
+      <fieldset class="form-group checkbox-fieldset">
+        <legend>Prehranske omejitve</legend>
+        <div class="checkbox-group">
+          <div class="checkbox-item">
+            <input type="checkbox" id="prehrana-gluten" name="prehrana" value="Brez glutena (celiakija / glutenska intoleranca)">
+            <label for="prehrana-gluten">Brez glutena (celiakija / glutenska intoleranca)</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="prehrana-laktoza" name="prehrana" value="Brez laktoze (laktozna intoleranca / izogibanje mlečnim beljakovinam)">
+            <label for="prehrana-laktoza">Brez laktoze (laktozna intoleranca / izogibanje mlečnim beljakovinam)</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="prehrana-vegetarijanska" name="prehrana" value="Vegetarijanska prehrana (brez mesa in rib)">
+            <label for="prehrana-vegetarijanska">Vegetarijanska prehrana (brez mesa in rib)</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="prehrana-veganska" name="prehrana" value="Veganska prehrana (izključno rastlinska prehrana, brez živalskih proizvodov)">
+            <label for="prehrana-veganska">Veganska prehrana (izključno rastlinska prehrana, brez živalskih proizvodov)</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="prehrana-oreski" name="prehrana" value="Alergija na oreške / lupinarje (specifične alergije na oreščke, arašide ali morske sadeže)">
+            <label for="prehrana-oreski">Alergija na oreške / lupinarje (specifične alergije na oreščke, arašide ali morske sadeže)</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="prehrana-drugo" name="prehrana" value="Drugo">
+            <label for="prehrana-drugo">Drugo</label>
+          </div>
+        </div>
+        <div class="form-group prehrana-drugo-polje" id="prehrana-drugo-polje" hidden>
+          <label for="prehrana-drugo-opis">Prosimo, navedite</label>
+          <input type="text" id="prehrana-drugo-opis" name="prehrana-drugo-opis">
+        </div>
+      </fieldset>
+
+      <div class="form-group form-group-checkbox">
+        <input type="checkbox" id="dodatni-gost" name="dodatni-gost">
+        <label for="dodatni-gost">Dogodka se bom udeležil/a z dodatnim gostom</label>
+      </div>
+
+      <fieldset class="guest-fields" id="gost-podatki" hidden>
+        <legend>Podatki o gostu</legend>
+
+        <div class="form-group">
+          <label for="gost-ime-priimek">Ime in priimek</label>
+          <input type="text" id="gost-ime-priimek" name="gost-ime-priimek" autocomplete="name">
+        </div>
+
+        <div class="form-group">
+          <label for="gost-podjetje-funkcija">Podjetje in funkcija</label>
+          <input type="text" id="gost-podjetje-funkcija" name="gost-podjetje-funkcija">
+        </div>
+
+        <div class="form-group">
+          <label for="gost-email">E-poštni naslov</label>
+          <input type="email" id="gost-email" name="gost-email" autocomplete="email">
+        </div>
+
+        <fieldset class="form-group checkbox-fieldset">
+          <legend>Prehranske omejitve</legend>
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <input type="checkbox" id="gost-prehrana-gluten" name="gost-prehrana" value="Brez glutena (celiakija / glutenska intoleranca)">
+              <label for="gost-prehrana-gluten">Brez glutena (celiakija / glutenska intoleranca)</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="gost-prehrana-laktoza" name="gost-prehrana" value="Brez laktoze (laktozna intoleranca / izogibanje mlečnim beljakovinam)">
+              <label for="gost-prehrana-laktoza">Brez laktoze (laktozna intoleranca / izogibanje mlečnim beljakovinam)</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="gost-prehrana-vegetarijanska" name="gost-prehrana" value="Vegetarijanska prehrana (brez mesa in rib)">
+              <label for="gost-prehrana-vegetarijanska">Vegetarijanska prehrana (brez mesa in rib)</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="gost-prehrana-veganska" name="gost-prehrana" value="Veganska prehrana (izključno rastlinska prehrana, brez živalskih proizvodov)">
+              <label for="gost-prehrana-veganska">Veganska prehrana (izključno rastlinska prehrana, brez živalskih proizvodov)</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="gost-prehrana-oreski" name="gost-prehrana" value="Alergija na oreške / lupinarje (specifične alergije na oreščke, arašide ali morske sadeže)">
+              <label for="gost-prehrana-oreski">Alergija na oreške / lupinarje (specifične alergije na oreščke, arašide ali morske sadeže)</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="gost-prehrana-drugo" name="gost-prehrana" value="Drugo">
+              <label for="gost-prehrana-drugo">Drugo</label>
+            </div>
+          </div>
+          <div class="form-group prehrana-drugo-polje" id="gost-prehrana-drugo-polje" hidden>
+            <label for="gost-prehrana-drugo-opis">Prosimo, navedite</label>
+            <input type="text" id="gost-prehrana-drugo-opis" name="gost-prehrana-drugo-opis">
+          </div>
+        </fieldset>
+      </fieldset>
+
       <div class="form-group form-group-checkbox">
         <input type="checkbox" id="soglasje" name="soglasje" required>
         <label for="soglasje">

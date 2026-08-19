@@ -8,6 +8,36 @@ const submitButton = document.getElementById("submit-button");
 const formError = document.getElementById("form-error");
 const confirmationMessage = document.getElementById("confirmation-message");
 
+const dodatniGostCheckbox = document.getElementById("dodatni-gost");
+const gostPodatki = document.getElementById("gost-podatki");
+const prehranaDrugoCheckbox = document.getElementById("prehrana-drugo");
+const prehranaDrugoPolje = document.getElementById("prehrana-drugo-polje");
+const gostPrehranaDrugoCheckbox = document.getElementById("gost-prehrana-drugo");
+const gostPrehranaDrugoPolje = document.getElementById("gost-prehrana-drugo-polje");
+
+dodatniGostCheckbox.addEventListener("change", function () {
+  gostPodatki.hidden = !dodatniGostCheckbox.checked;
+});
+
+prehranaDrugoCheckbox.addEventListener("change", function () {
+  prehranaDrugoPolje.hidden = !prehranaDrugoCheckbox.checked;
+});
+
+gostPrehranaDrugoCheckbox.addEventListener("change", function () {
+  gostPrehranaDrugoPolje.hidden = !gostPrehranaDrugoCheckbox.checked;
+});
+
+function collectPrehrana(checkboxName, opisFieldName) {
+  const izbrane = Array.from(form.querySelectorAll('input[name="' + checkboxName + '"]:checked'));
+  const opis = form[opisFieldName].value.trim();
+  return izbrane.map(function (checkbox) {
+    if (checkbox.value === "Drugo" && opis) {
+      return "Drugo: " + opis;
+    }
+    return checkbox.value;
+  });
+}
+
 function showError(message) {
   formError.textContent = message;
   formError.hidden = false;
@@ -28,8 +58,11 @@ form.addEventListener("submit", async function (event) {
 
   const imePriimek = form["ime-priimek"].value.trim();
   const email = form["email"].value.trim();
+  const podjetje = form["podjetje"].value.trim();
+  const funkcija = form["funkcija"].value.trim();
   const soglasje = form["soglasje"].checked;
   const honeypot = form["website"].value.trim();
+  const dodatniGost = dodatniGostCheckbox.checked;
 
   // Honeypot je izpolnjen - domnevamo bota, prijavo tiho zavrnemo.
   if (honeypot !== "") {
@@ -46,6 +79,25 @@ form.addEventListener("submit", async function (event) {
     return;
   }
 
+  if (prehranaDrugoCheckbox.checked && !form["prehrana-drugo-opis"].value.trim()) {
+    showError("Prosimo, navedite vašo prehransko omejitev.");
+    return;
+  }
+
+  if (dodatniGost) {
+    const gostEmail = form["gost-email"].value.trim();
+
+    if (gostEmail && !isValidEmail(gostEmail)) {
+      showError("Prosimo, vnesite veljaven e-poštni naslov gosta.");
+      return;
+    }
+
+    if (gostPrehranaDrugoCheckbox.checked && !form["gost-prehrana-drugo-opis"].value.trim()) {
+      showError("Prosimo, navedite prehransko omejitev gosta.");
+      return;
+    }
+  }
+
   if (!soglasje) {
     showError("Za prijavo je potrebno soglasje za obdelavo osebnih podatkov.");
     return;
@@ -54,8 +106,21 @@ form.addEventListener("submit", async function (event) {
   const data = {
     imePriimek: imePriimek,
     email: email,
+    podjetje: podjetje,
+    funkcija: funkcija,
+    prehranskeOmejitve: collectPrehrana("prehrana", "prehrana-drugo-opis"),
+    dodatniGost: dodatniGost,
     soglasje: soglasje
   };
+
+  if (dodatniGost) {
+    data.gost = {
+      imePriimek: form["gost-ime-priimek"].value.trim(),
+      podjetjeFunkcija: form["gost-podjetje-funkcija"].value.trim(),
+      email: form["gost-email"].value.trim(),
+      prehranskeOmejitve: collectPrehrana("gost-prehrana", "gost-prehrana-drugo-opis")
+    };
+  }
 
   submitButton.disabled = true;
   submitButton.textContent = "Pošiljanje...";
