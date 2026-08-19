@@ -180,6 +180,11 @@ h1 {
   color: var(--navy);
 }
 
+.form-group[hidden],
+.guest-fields[hidden] {
+  display: none;
+}
+
 .honeypot {
   position: absolute;
   left: -9999px;

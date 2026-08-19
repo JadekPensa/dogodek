@@ -32,7 +32,7 @@ function collectPrehrana(checkboxName, opisFieldName) {
   const opis = form[opisFieldName].value.trim();
   return izbrane.map(function (checkbox) {
     if (checkbox.value === "Drugo" && opis) {
-      return "Drugo: " + opis;
+      return opis;
     }
     return checkbox.value;
   });
