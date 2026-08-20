@@ -6,6 +6,7 @@ const CONTACT_EMAIL = "martin.retelj@jadek-pensa.si";
 const form = document.getElementById("registration-form");
 const submitButton = document.getElementById("submit-button");
 const formError = document.getElementById("form-error");
+const registrationView = document.getElementById("registration-view");
 const confirmationMessage = document.getElementById("confirmation-message");
 
 const dodatniGostRadios = document.querySelectorAll('input[name="dodatni-gost"]');
@@ -180,6 +181,7 @@ form.addEventListener("submit", async function (event) {
   try {
     await postWithRetry(data, 3);
     submitButton.textContent = "Oddano";
+    registrationView.hidden = true;
     confirmationMessage.hidden = false;
   } catch (error) {
     showError(
