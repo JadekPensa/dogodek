@@ -137,7 +137,8 @@ form.addEventListener("submit", async function (event) {
 
   if (dodatniGost) {
     const gostImePriimek = form["gost-ime-priimek"].value.trim();
-    const gostPodjetjeFunkcija = form["gost-podjetje-funkcija"].value.trim();
+    const gostPodjetje = form["gost-podjetje"].value.trim();
+    const gostFunkcija = form["gost-funkcija"].value.trim();
     const gostEmail = form["gost-email"].value.trim();
 
     if (!gostImePriimek) {
@@ -145,8 +146,13 @@ form.addEventListener("submit", async function (event) {
       return;
     }
 
-    if (!gostPodjetjeFunkcija) {
-      showError("Prosimo, vnesite podjetje in funkcijo gosta.");
+    if (!gostPodjetje) {
+      showError("Prosimo, vnesite podjetje gosta.");
+      return;
+    }
+
+    if (!gostFunkcija) {
+      showError("Prosimo, vnesite funkcijo gosta.");
       return;
     }
 
@@ -178,10 +184,11 @@ form.addEventListener("submit", async function (event) {
 
   if (dodatniGost) {
     data.gost = {
-      imePriimek: form["gost-ime-priimek"].value.trim(),
-      podjetjeFunkcija: form["gost-podjetje-funkcija"].value.trim(),
-      email: form["gost-email"].value.trim(),
-      prehranskeOmejitve: collectPrehrana("gost-prehrana", "gost-prehrana-drugo-opis")
+      imePriimekG: form["gost-ime-priimek"].value.trim(),
+      podjetjeG: form["gost-podjetje"].value.trim(),
+      FunkcijaG: form["gost-funkcija"].value.trim(),
+      emailG: form["gost-email"].value.trim(),
+      prehranskeOmejitveG: collectPrehrana("gost-prehrana", "gost-prehrana-drugo-opis")
     };
   }
 
