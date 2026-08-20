@@ -55,7 +55,7 @@ body {
 
 h1 {
   color: var(--navy);
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   font-weight: normal;
   margin: 0 0 0.5rem;
 }
@@ -70,8 +70,8 @@ h1 {
 
 .event-meta {
   color: var(--gray);
-  font-size: 0.95rem;
-  margin: 0 0 1.5rem;
+  font-size: 1.15rem;
+  margin: 0 0 0.75rem;
   line-height: 1.4;
 }
 
