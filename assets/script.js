@@ -10,10 +10,6 @@ const confirmationMessage = document.getElementById("confirmation-message");
 
 const dodatniGostRadios = document.querySelectorAll('input[name="dodatni-gost"]');
 const gostPodatki = document.getElementById("gost-podatki");
-const prehranaDrugoCheckbox = document.getElementById("prehrana-drugo");
-const prehranaDrugoPolje = document.getElementById("prehrana-drugo-polje");
-const gostPrehranaDrugoCheckbox = document.getElementById("gost-prehrana-drugo");
-const gostPrehranaDrugoPolje = document.getElementById("gost-prehrana-drugo-polje");
 
 dodatniGostRadios.forEach(function (radio) {
   radio.addEventListener("change", function () {
@@ -24,32 +20,9 @@ dodatniGostRadios.forEach(function (radio) {
       gostPodatki.querySelectorAll("input[type=text], input[type=email]").forEach(function (input) {
         input.value = "";
       });
-      gostPodatki.querySelectorAll("input[type=checkbox]").forEach(function (checkbox) {
-        checkbox.checked = false;
-      });
-      gostPrehranaDrugoPolje.hidden = true;
     }
   });
 });
-
-prehranaDrugoCheckbox.addEventListener("change", function () {
-  prehranaDrugoPolje.hidden = !prehranaDrugoCheckbox.checked;
-});
-
-gostPrehranaDrugoCheckbox.addEventListener("change", function () {
-  gostPrehranaDrugoPolje.hidden = !gostPrehranaDrugoCheckbox.checked;
-});
-
-function collectPrehrana(checkboxName, opisFieldName) {
-  const izbrane = Array.from(form.querySelectorAll('input[name="' + checkboxName + '"]:checked'));
-  const opis = form[opisFieldName].value.trim();
-  return izbrane.map(function (checkbox) {
-    if (checkbox.value === "Drugo" && opis) {
-      return opis;
-    }
-    return checkbox.value;
-  });
-}
 
 function showError(message) {
   formError.textContent = message;
@@ -142,11 +115,6 @@ form.addEventListener("submit", async function (event) {
     return;
   }
 
-  if (prehranaDrugoCheckbox.checked && !form["prehrana-drugo-opis"].value.trim()) {
-    showError("Prosimo, navedite vašo prehransko omejitev.");
-    return;
-  }
-
   if (dodatniGost) {
     const gostImePriimek = form["gost-ime-priimek"].value.trim();
     const gostPodjetje = form["gost-podjetje"].value.trim();
@@ -172,11 +140,6 @@ form.addEventListener("submit", async function (event) {
       showError("Prosimo, vnesite veljaven e-poštni naslov gosta.");
       return;
     }
-
-    if (gostPrehranaDrugoCheckbox.checked && !form["gost-prehrana-drugo-opis"].value.trim()) {
-      showError("Prosimo, navedite prehransko omejitev gosta.");
-      return;
-    }
   }
 
   if (!soglasjeObdelava) {
@@ -194,7 +157,7 @@ form.addEventListener("submit", async function (event) {
     email: email,
     podjetje: podjetje,
     funkcija: funkcija,
-    prehranskeOmejitve: collectPrehrana("prehrana", "prehrana-drugo-opis"),
+    prehranskeOmejitve: form["prehrana"].value.trim(),
     dodatniGost: dodatniGost,
     opombe: opombe,
     soglasjeObdelava: soglasjeObdelava,
@@ -207,7 +170,7 @@ form.addEventListener("submit", async function (event) {
       podjetjeG: form["gost-podjetje"].value.trim(),
       FunkcijaG: form["gost-funkcija"].value.trim(),
       emailG: form["gost-email"].value.trim(),
-      prehranskeOmejitveG: collectPrehrana("gost-prehrana", "gost-prehrana-drugo-opis")
+      prehranskeOmejitveG: form["gost-prehrana"].value.trim()
     };
   }
 
