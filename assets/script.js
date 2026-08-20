@@ -17,7 +17,18 @@ const gostPrehranaDrugoPolje = document.getElementById("gost-prehrana-drugo-polj
 
 dodatniGostRadios.forEach(function (radio) {
   radio.addEventListener("change", function () {
-    gostPodatki.hidden = form["dodatni-gost"].value !== "Da";
+    const priDogodku = form["dodatni-gost"].value === "Da";
+    gostPodatki.hidden = !priDogodku;
+
+    if (!priDogodku) {
+      gostPodatki.querySelectorAll("input[type=text], input[type=email]").forEach(function (input) {
+        input.value = "";
+      });
+      gostPodatki.querySelectorAll("input[type=checkbox]").forEach(function (checkbox) {
+        checkbox.checked = false;
+      });
+      gostPrehranaDrugoPolje.hidden = true;
+    }
   });
 });
 
@@ -93,9 +104,21 @@ form.addEventListener("submit", async function (event) {
   }
 
   if (dodatniGost) {
+    const gostImePriimek = form["gost-ime-priimek"].value.trim();
+    const gostPodjetjeFunkcija = form["gost-podjetje-funkcija"].value.trim();
     const gostEmail = form["gost-email"].value.trim();
 
-    if (gostEmail && !isValidEmail(gostEmail)) {
+    if (!gostImePriimek) {
+      showError("Prosimo, vnesite ime in priimek gosta.");
+      return;
+    }
+
+    if (!gostPodjetjeFunkcija) {
+      showError("Prosimo, vnesite podjetje in funkcijo gosta.");
+      return;
+    }
+
+    if (!gostEmail || !isValidEmail(gostEmail)) {
       showError("Prosimo, vnesite veljaven e-poštni naslov gosta.");
       return;
     }
