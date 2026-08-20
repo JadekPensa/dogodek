@@ -55,17 +55,24 @@ body {
 
 h1 {
   color: var(--navy);
-  font-size: 1.75rem;
+  font-size: 1.4rem;
   font-weight: normal;
   margin: 0 0 0.5rem;
 }
 
 .event-name {
   color: var(--navy);
-  font-size: 1.75rem;
+  font-size: 1.4rem;
   font-weight: normal;
-  margin: 0 0 1.5rem;
+  margin: 0 0 0.5rem;
   line-height: 1.3;
+}
+
+.event-meta {
+  color: var(--gray);
+  font-size: 0.95rem;
+  margin: 0 0 1.5rem;
+  line-height: 1.4;
 }
 
 .registration-form {
