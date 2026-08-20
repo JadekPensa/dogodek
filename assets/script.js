@@ -1,7 +1,7 @@
 // Power Automate endpoint (HTTP trigger "Ko je prejeta zahteva HTTP")
 const POST_URL = "https://default876318425aed4cb986a5d505d03356.70.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/22/workflows/e4119d85cf9d41c6bbb3948d01083faa/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=ssg4-sqidLFLqZVWbDEnbg7BTLWkiisZZAQqT2CQa-Q";
 
-const CONTACT_EMAIL = "aljaz.jadek@jadek-pensa.si";
+const CONTACT_EMAIL = "martin.retelj@jadek-pensa.si";
 
 const form = document.getElementById("registration-form");
 const submitButton = document.getElementById("submit-button");
