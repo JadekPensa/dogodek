@@ -65,6 +65,38 @@ function isValidEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
+function wait(ms) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, ms);
+  });
+}
+
+async function postWithRetry(data, attempts) {
+  for (let poskus = 1; poskus <= attempts; poskus++) {
+    try {
+      const response = await fetch(POST_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+        return response;
+      }
+
+      if (poskus === attempts) {
+        throw new Error("Napaka pri pošiljanju: " + response.status);
+      }
+    } catch (error) {
+      if (poskus === attempts) {
+        throw error;
+      }
+    }
+
+    await wait(1000 * poskus);
+  }
+}
+
 form.addEventListener("submit", async function (event) {
   event.preventDefault();
   clearError();
@@ -157,18 +189,9 @@ form.addEventListener("submit", async function (event) {
   submitButton.textContent = "Pošiljanje...";
 
   try {
-    const response = await fetch(POST_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
-    });
-
-    if (response.ok) {
-      submitButton.textContent = "Oddano";
-      confirmationMessage.hidden = false;
-    } else {
-      throw new Error("Napaka pri pošiljanju");
-    }
+    await postWithRetry(data, 3);
+    submitButton.textContent = "Oddano";
+    confirmationMessage.hidden = false;
   } catch (error) {
     showError(
       "Prijava ni bila uspešna, poskusite znova ali nas kontaktirajte na " + CONTACT_EMAIL + "."
