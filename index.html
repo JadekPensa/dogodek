@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Prijava na dogodek | Jadek & Pensa</title>
+<title>Prijava na poslovni dogodek | Jadek & Pensa</title>
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -12,7 +12,8 @@
   </header>
 
   <main class="page">
-    <h1>Prijava na dogodek</h1>
+    <h1>Prijava na poslovni dogodek</h1>
+    <p class="event-name">Med priložnostjo in tveganjem: pravni in davčni vidiki nepremičninskih investicij</p>
 
     <form id="registration-form" class="registration-form" novalidate>
       <!-- Honeypot polje - skrito za uporabnike, aktivno za bote -->
@@ -147,12 +148,25 @@
         </fieldset>
       </fieldset>
 
+      <div class="form-group">
+        <label for="opombe">Opombe</label>
+        <textarea id="opombe" name="opombe" rows="4"></textarea>
+      </div>
+
       <div class="form-group form-group-checkbox">
-        <input type="checkbox" id="soglasje" name="soglasje" required>
-        <label for="soglasje">
-          Strinjam se, da Jadek &amp; Pensa, d.o.o., moje osebne podatke iz tega obrazca obdeluje za namen
-          organizacije in izvedbe dogodka [IME DOGODKA]. Podatki bodo hranjeni [OBDOBJE HRAMBE] in ne bodo
-          posredovani tretjim osebam brez pravne podlage. <span class="required">*</span>
+        <input type="checkbox" id="soglasje-obdelava" name="soglasje-obdelava" required>
+        <label for="soglasje-obdelava">
+          Strinjam se, da Odvetniška pisarna Jadek &amp; Pensa, d.o.o. moje osebne podatke iz tega obrazca obdeluje za namen
+          organizacije in izvedbe dogodka (vključno z morebitnim pošiljanjem gradiv po dogodku). Podatki bodo hranjeni
+          2 leti in ne bodo posredovani tretjim osebam brez pravne podlage. <span class="required">*</span>
+        </label>
+      </div>
+
+      <div class="form-group form-group-checkbox">
+        <input type="checkbox" id="soglasje-foto" name="soglasje-foto" required>
+        <label for="soglasje-foto">
+          Strinjam se s fotografiranjem in snemanjem dogodka ter objavo slikovnega gradiva na kanalih Jadek &amp; Pensa
+          in Real Estate Academy. <span class="required">*</span>
         </label>
       </div>
 

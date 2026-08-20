@@ -57,7 +57,14 @@ h1 {
   color: var(--navy);
   font-size: 1.75rem;
   font-weight: normal;
+  margin: 0 0 0.5rem;
+}
+
+.event-name {
+  color: var(--gray);
+  font-size: 1.05rem;
   margin: 0 0 1.5rem;
+  line-height: 1.4;
 }
 
 .registration-form {
@@ -83,16 +90,19 @@ h1 {
 }
 
 .form-group input[type="text"],
-.form-group input[type="email"] {
+.form-group input[type="email"],
+.form-group textarea {
   padding: 0.65rem 0.75rem;
   border: 1px solid var(--light-gray);
   border-radius: 4px;
   font-size: 1rem;
   font-family: inherit;
+  resize: vertical;
 }
 
 .form-group input[type="text"]:focus,
-.form-group input[type="email"]:focus {
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
   outline: none;
   border-color: var(--navy);
 }

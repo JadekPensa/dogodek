@@ -105,7 +105,9 @@ form.addEventListener("submit", async function (event) {
   const email = form["email"].value.trim();
   const podjetje = form["podjetje"].value.trim();
   const funkcija = form["funkcija"].value.trim();
-  const soglasje = form["soglasje"].checked;
+  const opombe = form["opombe"].value.trim();
+  const soglasjeObdelava = form["soglasje-obdelava"].checked;
+  const soglasjeFoto = form["soglasje-foto"].checked;
   const honeypot = form["website"].value.trim();
   const dodatniGostOdgovor = form["dodatni-gost"].value;
   const dodatniGost = dodatniGostOdgovor === "Da";
@@ -177,8 +179,13 @@ form.addEventListener("submit", async function (event) {
     }
   }
 
-  if (!soglasje) {
+  if (!soglasjeObdelava) {
     showError("Za prijavo je potrebno soglasje za obdelavo osebnih podatkov.");
+    return;
+  }
+
+  if (!soglasjeFoto) {
+    showError("Za prijavo je potrebno soglasje za fotografiranje in snemanje dogodka.");
     return;
   }
 
@@ -189,7 +196,9 @@ form.addEventListener("submit", async function (event) {
     funkcija: funkcija,
     prehranskeOmejitve: collectPrehrana("prehrana", "prehrana-drugo-opis"),
     dodatniGost: dodatniGost,
-    soglasje: soglasje
+    opombe: opombe,
+    soglasjeObdelava: soglasjeObdelava,
+    soglasjeFoto: soglasjeFoto
   };
 
   if (dodatniGost) {
