@@ -125,6 +125,16 @@ form.addEventListener("submit", async function (event) {
     return;
   }
 
+  if (!podjetje) {
+    showError("Prosimo, vnesite podjetje.");
+    return;
+  }
+
+  if (!funkcija) {
+    showError("Prosimo, vnesite funkcijo.");
+    return;
+  }
+
   if (!dodatniGostOdgovor) {
     showError("Prosimo, izberite, ali se boste dogodka udeležili z dodatnim gostom.");
     return;
